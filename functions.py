@@ -93,3 +93,14 @@ def ActionMoveDown(node):
         new_node[zero_ind] = down_element
     return [status,new_node]
 
+def AddNode(nodes,current_node):
+    exists = False
+    for node in nodes:
+        if current_node[0:9]==node[0:9]:
+            print("This node is already in the list")
+            exists = True
+            break
+    if exists == False:
+        nodes.append(current_node)
+    return [nodes,exists]
+
