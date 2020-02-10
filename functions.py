@@ -76,6 +76,7 @@ def ActionMoveUp(node):
         new_node[zero_ind] = up_element
     return [status,new_node]
 
+
 def ActionMoveDown(node):
     # moves the blank tile down if possible, if not set status to false and 
     # return original node.
@@ -93,6 +94,7 @@ def ActionMoveDown(node):
         new_node[zero_ind] = down_element
     return [status,new_node]
 
+
 def AddNode(nodes,current_node):
     exists = False
     for node in nodes:
@@ -103,4 +105,31 @@ def AddNode(nodes,current_node):
     if exists == False:
         nodes.append(current_node)
     return [nodes,exists]
+
+
+def generate_path(nodes):
+    #Assume the last item in nodes is the goal node
+    parent = nodes[-1][9]
+    path_nodes = [parent]
+    while parent != -1:
+        parent_node = nodes[path_nodes[-1]]
+        parent = parent_node[9]
+        path_nodes.append(parent)
+    path = [nodes[-1]]
+    for ind in path_nodes:
+        if ind == -1:
+            break
+        else:
+            path.insert(0,nodes[ind])
+    return path
+
+
+    
+
+
+
+    
+
+    
+   
 

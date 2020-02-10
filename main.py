@@ -7,23 +7,20 @@ from functions import *
 # nodes where it can be found. The starting node has a parent node of -1
 nodes = [[]]
 
-start_node = [1,2,3,4,0,5,6,7,8,-1]
+start_node = [1,2,3,4,0,5,6,7,8]
 
+start_node.append(-1)
 nodes[0] = start_node
 
-# [status,new_node] = ActionMoveLeft(nodes[0])
-# [status,new_node] = ActionMoveRight(nodes[0])
-# [status,new_node] = ActionMoveUp(nodes[0])
-# [status,new_node] = ActionMoveDown(nodes[0])
-
-print_matrix(nodes[0])
-
-new_node = [1,2,3,4,0,5,6,7,8,-1]
-
+[status,new_node] = ActionMoveLeft(nodes[-1])
+new_node[9] = 0
+[nodes,exists] = AddNode(nodes,new_node)
+[status,new_node] = ActionMoveUp(nodes[-1])
+new_node[9] = 1
 [nodes,exists] = AddNode(nodes,new_node)
 
-if(exists==False):
-    print_matrix(nodes[1])
+path = generate_path(nodes)
 
-
+for node in path:
+    print_matrix(node)
 
