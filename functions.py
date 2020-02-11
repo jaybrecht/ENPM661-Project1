@@ -30,7 +30,6 @@ def ActionMoveLeft(node):
     new_node = node.copy()
     if i == 0:
         status = False
-        print("You cannot move the blank space left")
     else:
         status = True
         zero_ind = (3*i)+j
@@ -48,7 +47,6 @@ def ActionMoveRight(node):
     new_node = node.copy()
     if i == 2:
         status = False
-        print("You cannot move the blank space right")
     else:
         status = True
         zero_ind = (3*i)+j
@@ -66,7 +64,6 @@ def ActionMoveUp(node):
     new_node = node.copy()
     if j == 0:
         status = False
-        print("You cannot move the blank space up")
     else:
         status = True
         zero_ind = (3*i)+j
@@ -84,7 +81,6 @@ def ActionMoveDown(node):
     new_node = node.copy()
     if j == 2:
         status = False
-        print("You cannot move the blank space down")
     else:
         status = True
         zero_ind = (3*i)+j
@@ -95,16 +91,14 @@ def ActionMoveDown(node):
     return [status,new_node]
 
 
-def AddNode(nodes,current_node):
+def AddNode(new_node,nodes,node_set):
     exists = False
-    for node in nodes:
-        if current_node[0:9]==node[0:9]:
-            print("This node is already in the list")
-            exists = True
-            break
-    if exists == False:
-        nodes.append(current_node)
-    return [nodes,exists]
+    if tuple(new_node[0:9]) in node_set:
+        exists = True
+    else:
+        nodes.append(new_node)
+        node_set.add(tuple(new_node[0:9]))
+    return [nodes,node_set,exists]
 
 
 def generate_path(nodes):
@@ -122,7 +116,6 @@ def generate_path(nodes):
         else:
             path.insert(0,nodes[ind])
     return path
-
 
     
 
