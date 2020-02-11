@@ -117,7 +117,17 @@ def generate_path(nodes):
             path.insert(0,nodes[ind])
     return path
 
-    
+
+def check_neighbors(cur_node,direction):
+    if direction == 'right':
+        [status,new_node] = ActionMoveLeft(cur_node)
+    if direction == 'left':
+        [status,new_node] = ActionMoveRight(cur_node)
+    if direction == 'up':
+        [status,new_node] = ActionMoveUp(cur_node)
+    if direction == 'down':
+        [status,new_node] = ActionMoveDown(cur_node)
+    return [status,new_node]
 
 
 
