@@ -1,18 +1,16 @@
 from functions import *
 from plot_path import *
 
+# User Inputs
 game_mode = True
+random_mode = False
 
 if game_mode:
     [start_node,goal_node] = startGame()
-else:
-    # Possible Case
-    # start_node = [8,4,2,3,1,7,5,6,0]
-    # goal_node = [5,4,3,6,0,2,7,8,1]
+elif random_mode:
+    goal_node = [1,8,7,2,0,6,3,4,5]
+    start_node = generate_random()
 
-    # Impossible Case
-    start_node = [8,0,7,1,4,6,2,3,5]
-    goal_node = [1,4,7,2,5,8,3,6,0]
 
 [nodes,success] = BFS(start_node,goal_node)
 

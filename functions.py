@@ -1,4 +1,5 @@
 from collections import deque
+import random
 
 def BlankTileLocation(node):
     # finds the index of the blank element in the list
@@ -176,9 +177,10 @@ def startGame():
 
     print("\nPlease enter the goal configuration of your puzzle")
     goal_node_str = input("\nGoal Configuration: ")
+    print()
 
-    start_node = [] #[8,4,2,3,1,7,5,6,0]
-    goal_node = [] #[5,4,3,6,0,2,7,8,1]
+    start_node = [] 
+    goal_node = []
 
     for s in start_node_str:
         if s.isdigit():
@@ -191,4 +193,24 @@ def startGame():
     if (len(goal_node) != 9) or (len(start_node) != 9):
         raise Exception('Your configurations are not formatted correctly')
 
+    list1 = start_node.copy()
+    list2 = goal_node.copy()
+    list1.sort()
+    list2.sort()
+
+    if (list1 != [0,1,2,3,4,5,6,7,8]) or (list2 != [0,1,2,3,4,5,6,7,8]):
+        raise Exception('Your configurations are not formatted correctly')
+
     return [start_node,goal_node]
+
+
+def generate_random():
+    start_node = []
+
+    while len(start_node) < 9:
+        r=random.randint(0,8)
+        if r not in start_node: 
+            start_node.append(r)
+
+    return start_node
+
