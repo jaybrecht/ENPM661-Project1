@@ -2,8 +2,8 @@ from functions import *
 from plot_path import *
 
 # User Inputs
-game_mode = False   
-random_mode = True
+game_mode = True   
+random_mode = False
 
 if game_mode:
     [start_node,goal_node] = startGame()
