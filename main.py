@@ -2,8 +2,8 @@ from functions import *
 from plot_path import *
 
 # User Inputs
-game_mode = True
-random_mode = False
+game_mode = False   
+random_mode = True
 
 if game_mode:
     [start_node,goal_node] = startGame()
@@ -15,7 +15,11 @@ elif random_mode:
 [nodes,success] = BFS(start_node,goal_node)
 
 if not success:
-    print("\nThe goal configuration cannot be reached.")
+    print("\nThe goal configuration: ")
+    print_matrix(goal_node)
+    print("can not be reached for the starting board:")
+    print_matrix(start_node[0:9])
+    print("The program searched",str(len(nodes)), "nodes")
     print("Please try a different configuration\n")
 
 else:

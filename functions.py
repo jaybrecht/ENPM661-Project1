@@ -163,6 +163,9 @@ def BFS(start_node,goal_node):
 
     
 def startGame():
+    start_node = [] 
+    goal_node = []
+
     print("\n*****************************")
     print("Welcome to the 8 Puzzle Game")
     print("*****************************\n")
@@ -175,31 +178,35 @@ def startGame():
 
     start_node_str = input("Starting Configuration: ")
 
-    print("\nPlease enter the goal configuration of your puzzle")
-    goal_node_str = input("\nGoal Configuration: ")
-    print()
-
-    start_node = [] 
-    goal_node = []
-
     for s in start_node_str:
         if s.isdigit():
             start_node.append(int(s))
+
+    if len(start_node) != 9:
+        raise Exception('Your board does not have the correct number of tiles')
+
+    list1 = start_node.copy()
+    list1.sort()
+
+    if list1 != [0,1,2,3,4,5,6,7,8]:
+        raise Exception('Your board is not formatted correctly')
+
+    print("\nPlease enter the goal configuration of your puzzle")
+    goal_node_str = input("\nGoal Configuration: ")
+    print()
 
     for s in goal_node_str:
         if s.isdigit():
             goal_node.append(int(s))
 
-    if (len(goal_node) != 9) or (len(start_node) != 9):
-        raise Exception('Your configurations are not formatted correctly')
-
-    list1 = start_node.copy()
+    if len(goal_node) != 9:
+        raise Exception('Your board does not have the correct number of tiles')
+    
     list2 = goal_node.copy()
-    list1.sort()
     list2.sort()
 
-    if (list1 != [0,1,2,3,4,5,6,7,8]) or (list2 != [0,1,2,3,4,5,6,7,8]):
-        raise Exception('Your configurations are not formatted correctly')
+    if list2 != [0,1,2,3,4,5,6,7,8]:
+        raise Exception('Your board is not formatted correctly')
 
     return [start_node,goal_node]
 
